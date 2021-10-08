@@ -19,6 +19,7 @@ public class Users {
     @Column(name = "usr_id", nullable = false)
     private String userId;
 
-    @Column(name = "usr_token", nullable = false)
+
+    @Column(name = "usr_tokn", nullable = false)
     private String userToken;
 }
