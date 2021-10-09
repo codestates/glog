@@ -1,0 +1,85 @@
+.signup-container {
+    width : 980px;
+    min-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+.signup-intro a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+.signup-intro .intro {
+    font-size: 1.5em;
+}
+
+.user-info {
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+}
+.user-info div {
+    width: 270px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+.user-info div input:not([type='checkbox']) {
+    width: 260px;
+    height: 48px;
+    border: 2px solid #ddd;
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 16px;
+    padding-left: 5px;
+}
+.user-info div input:not([type='checkbox']):focus {
+    outline: 3px solid #1ac2d1;
+}
+.user-info .password {
+    position: relative;
+}
+.user-info .password .show {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    color: #179ea9;
+    cursor: pointer;
+}
+.user-info .signup-btn {
+    width: 270px;
+    height: 48px;
+    border-radius: 16px;
+    background-color: #179ea9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.social-login-btn {
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+}
+.social-login-btn p {
+    color: #797979;
+}
+.social-login-btn div{
+    width: 270px;
+    height: 50px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #797979;
+}
+.social-login-btn div:hover {
+    border: 1px solid #a5e9fd;
+    background-color: #cff2fd9b;
+}
+.social-login-btn div span {
+    margin-left: 15px;
+}
