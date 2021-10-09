@@ -7,5 +7,7 @@ import lombok.Setter;
 @Setter
 public class UserInfoDTO {
 
+    private String userId;
+    private String token;
 
 }
