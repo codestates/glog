@@ -1,0 +1,130 @@
+.signin-container{
+    width: 980px;
+    min-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.signin-intro{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+
+.signin-intro .intro{
+    position: relative;
+    font-size: 1.5em;
+    width: 150px;
+    right: 50px;
+    height: 5px;
+}
+
+.signin {
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.signin div{
+    width: 270px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.signin .email_label{
+    position: relative;
+    right: 175px;
+    top: 36px;
+}
+
+.signin .password_label{
+    position: relative;
+    right: 183px;
+    top: 36px;
+}
+
+.signin div input:not([type="checkbox"]){
+    width: 260px;
+    height: 48px;
+    border: 2px solid #ddd;
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 16px;
+    padding-left: 5px;
+}
+
+.signin div input:not([type="checkbox"]):focus{
+    outline: 3px solid #1ac2d1;
+}
+
+.signin .password{
+    position: relative;
+}
+
+.signin .password .show{
+    position: absolute;
+    right: 10px;
+    top: 38px;
+    color :gray;
+}
+
+.signin .email{
+    position: relative;
+}
+
+.signin .email .email_error{
+    position: absolute;
+    right: -160px;
+    top: 37px;
+    color: red;
+    font-weight: bold;
+    
+}
+
+.signin .signin-btn{
+    position: relative;
+    width: 270px;
+    height: 48px;
+    border-radius: 16px;
+    background-color: #179ea9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    top: 20px;
+}
+
+.social-singin-btn{
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.social-singin-btn p{
+    position: relative;
+    color: #797979;
+    top: 144px;
+}
+
+.social-singin-btn button {
+    position: relative;
+    width: 270px;
+    height: 50px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #797979;
+    top: 148px;
+}
+
+.social-singin-btn button:hover{
+    border: 1px solid #a5e9fd;
+    background-color: #cff2fd9b;
+}
+
+.social-singin-btn button span{
+    margin-left: 15px;
+}
