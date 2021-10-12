@@ -37,9 +37,9 @@ public class RegisterRepository {
             users.setUserId(userInfoDTO.getUserId());
             users.setUserToken(userInfoDTO.getToken());
 
-            userInfos.setUserMail(userInfoDTO.getUserId());
-            userInfos.setUserName(userInfoDTO.getName());
-            userInfos.setUserCreateAt(now);
+            userInfos.setUseremail(userInfoDTO.getUserId());
+            userInfos.setUsername(userInfoDTO.getName());
+            userInfos.setUserCreateTime(now);
 
             entityManager.persist(users);
             entityManager.persist(userInfos);
