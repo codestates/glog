@@ -79,7 +79,7 @@ public class JWTTokenUtils {
      * @param data -
      * @return
      */
-    public String generateUsersToken(Object data) {
+    public String generateObjectToken(Object data) {
         Map<String, Object> claims = objectMapper.convertValue(data, Map.class);
         return doGenerateToken(claims);
     }
@@ -101,7 +101,7 @@ public class JWTTokenUtils {
      * @param token -
      * @return
      */
-    public Boolean validateUserToken(String token) {
+    public Boolean validateToken(String token) {
         final String userId = getSubjectFromToken(token);
         return (userId.equals(SUBJECT_KEY) && !isTokenExpired(token));
     }
