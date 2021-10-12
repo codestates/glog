@@ -18,7 +18,7 @@ public class JWTTokenUtils {
     private String SIGN_KEY;
     @Value("${JWT.SUBJECTKEY}")
     private String SUBJECT_KEY;
-    private static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60;
+    private static final long JWT_TOKEN_EXPIRED_TIME = 10 * 60 * 60  * 1000;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
 
@@ -67,7 +67,7 @@ public class JWTTokenUtils {
                 .setClaims(claims)
                 .setSubject(SUBJECT_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_EXPIRED_TIME))
                 .signWith(SignatureAlgorithm.HS512, SIGN_KEY)
                 .compact();
     }
