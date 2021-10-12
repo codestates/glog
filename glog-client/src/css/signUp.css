@@ -20,7 +20,8 @@
     margin: 0 auto;
     text-align: center;
 }
-.user-info input:not([type='checkbox']) {
+.user-info .required, 
+.user-info .error{
     width: 250px;
     height: 30px;
     padding: 10px 8px;
@@ -29,8 +30,11 @@
     font-size: 16px;
     line-height: 16px;
 }
-.user-info div input:not([type='checkbox']):focus {
+.user-info .required:focus {
     outline: 3px solid #1ac2d1;
+}
+.user-info .error:focus {
+    outline: 3px solid #d8531e;
 }
 .user-info .nickname {
     margin-bottom: 10px;
@@ -51,6 +55,11 @@
     margin: 5px 10px 10px 0;
     color: #168e99;
 }
+.user-info .errorMessage {
+    float: right;
+    margin: 5px 10px 10px 0;
+    color: #d8531e;
+}
 .user-info .validation .exclamation {
     vertical-align: middle;
     margin-top: -3px;
@@ -60,15 +69,10 @@
 }
 .user-info .password .show {
     position: absolute;
+    top: 37px;
     right: 10px;
     color: #179ea9;
     cursor: pointer;
-}
-.user-info .password .pwd .show {
-    top: 37px;
-}
-.user-info .password .pwd-chk .show {
-    bottom: 0;
 }
 
 /* social login */
