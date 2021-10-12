@@ -5,58 +5,73 @@
     text-align: center;
     
 }
-.signup-intro a {
+/* intro */
+.intro a {
     display: inline-block;
     width: 40px;
     height: 40px;
 }
-.signup-intro .intro {
+.intro .salutation {
     font-size: 1.5em;
 }
-
+/* user info */
 .user-info {
     width: 270px;
     margin: 0 auto;
     text-align: center;
 }
-.user-info div {
-    width: 270px;
-    height: 50px;
-    margin-bottom: 10px;
-}
-.user-info div input:not([type='checkbox']) {
-    width: 260px;
-    height: 48px;
+.user-info input:not([type='checkbox']) {
+    width: 250px;
+    height: 30px;
+    padding: 10px 8px;
     border: 2px solid #ddd;
     border-radius: 16px;
     font-size: 16px;
     line-height: 16px;
-    padding-left: 5px;
 }
 .user-info div input:not([type='checkbox']):focus {
     outline: 3px solid #1ac2d1;
+}
+.user-info .nickname {
+    margin-bottom: 10px;
+}
+.user-info .signup-btn {
+    display: table-cell;
+    vertical-align: middle;
+    width: 270px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #179ea9;
+    font-size: 16px;
+    line-height: 16px;
+    color: #fff;
+}
+.user-info .validation {
+    float: right;
+    margin: 5px 10px 10px 0;
+    color: #168e99;
+}
+.user-info .validation .exclamation {
+    vertical-align: middle;
+    margin-top: -3px;
 }
 .user-info .password {
     position: relative;
 }
 .user-info .password .show {
     position: absolute;
-    right: 3px;
-    top: 3px;
+    right: 10px;
     color: #179ea9;
     cursor: pointer;
 }
-.user-info .signup-btn {
-    width: 270px;
-    height: 48px;
-    border-radius: 16px;
-    background-color: #179ea9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+.user-info .password .pwd .show {
+    top: 37px;
+}
+.user-info .password .pwd-chk .show {
+    bottom: 0;
 }
 
+/* social login */
 .social-login-btn {
     width: 270px;
     margin: 0 auto;
