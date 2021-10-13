@@ -28,6 +28,7 @@ export default function SignUp() {
 
     const jwtToken= () => {
         console.log('nickname1 ::: ', userInfo.nickname);
+        
         const header = {
             'type' : 'JWT',
             'alg' : 'HS256'
@@ -47,18 +48,17 @@ export default function SignUp() {
                                 .digest('base64')
                                 .replace('=', '');
 
-        //console.log('encoding ::: ',encodedHeader + '.' + encodedPayload + '.' + signature);
         return encodedHeader + '.' + encodedPayload + '.' + signature; 
     }
 
     const goSignUp = () => {
         const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
         const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
-    
+        
         if(userInfo.nickname === '') {
             let tmpStr = userInfo.email.split('@');
             let id = tmpStr[0];
-            setUserInfo({ ...userInfo, ['nickname'] : id});
+            userInfo.nickname = id;
         }
         //TODO: 보내기 전 유효성 검사하기 - email/password형식 확인
         if(!userInfo.email || !userInfo.password 
