@@ -26,7 +26,7 @@ public class LoginController {
     @ApiOperation(value = "로그인 API", notes = "로컬 사용자 로그인 API")
     public ResponseEntity<?> singin(@RequestBody()UserRequestDTO userRequestDTO){
         try{
-            Optional<Users> users = loginService.validateUserLogin(userRequestDTO.getUsr_token());
+            Optional<Users> users = loginService.validateUserLogin(userRequestDTO.getToken());
             return ResponseEntity.ok().body(loginService.doGenerateResponseDTO(users.get(),"Login success"));
         }catch (NoSuchElementException e){
             return ResponseEntity.badRequest().body(loginService.doGenerateBadResponseDTO(e.getMessage()));

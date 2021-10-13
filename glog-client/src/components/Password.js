@@ -11,7 +11,7 @@ export default function Password({handleInputValue}) {
     const [pwd, setPwd] = useState('');
 
     const validatePwd = (event) => {
-        const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/
+        const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
         let pwd = event.target.value;
 
         if(!pwdRegex.test(pwd)) {
