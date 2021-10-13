@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../css/signUp.css';
 import Email from '../components/Email'
 import Password from '../components/Password'
-import ReCaptcha from '../components/ReCaptcha'
+//import ReCaptcha from '../components/ReCaptcha'
 import SocialAuth from '../components/SocialAuth'
 import logo from '../img/logo.png';
 
