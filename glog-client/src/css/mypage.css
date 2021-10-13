@@ -1,0 +1,7 @@
+.mypageContainer {
+    width : 980px;
+    min-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #ccc;
+}
