@@ -49,6 +49,7 @@
     font-size: 16px;
     line-height: 16px;
     color: #fff;
+    cursor: pointer;
 }
 .user-info .validation {
     float: right;

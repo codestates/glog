@@ -9,17 +9,20 @@ import crypto from 'crypto';
 import axios from 'axios';
 
 export default function SignUp() {
+    const JWT_EXPIRY_TIME = 24 * 3600 * 1000; // 만료 시간 (24시간 밀리 초로 표현)
+
     const [userInfo, setUserInfo] = useState({
         email: '',
         password: '',
         nickname: ''
     });
+    //const [errorMsg, setErrorMsg] = useState('');
     const handleInputValue = (key) => (val) => {
         setUserInfo({ ...userInfo, [key]: val });
     };
 
     const base64url = (source) => {
-        return Buffer(JSON.stringify(origin))
+        return Buffer(JSON.stringify(source))
         .toString('base64')
         .replace('=', '');
     }
@@ -30,18 +33,19 @@ export default function SignUp() {
             'alg' : 'HS256'
         };
         const datas = {
+            'sub': 'gLogSubject',
+            'exp': JWT_EXPIRY_TIME,
             'email': userInfo.email,
             'password': userInfo.password,
             'nickname': userInfo.nickname
         }
         const encodedHeader = base64url(header);
-        const encodedPayload = base64url(payload);
+        const encodedPayload = base64url(datas);
         
-        const signature = crypto.createHmac('sha256', 'secret')
+        const signature = crypto.createHmac('sha256', 'glogkey')
                                 .update(encodedHeader + '.' + encodedPayload)
                                 .digest('base64')
                                 .replace('=', '');
-        console.log('token :: ', signature);
         return signature; 
     }
 
@@ -52,17 +56,19 @@ export default function SignUp() {
             setUserInfo({ ...userInfo, ['nickname'] : id});
         }
         //TODO: 보내기 전 유효성 검사하기 - email/password형식 확인
-        axios({
-            method: 'POST',
-            url: 'http://localhost:4000/signup',
-            data: jwtToken()
-        }).then((res) => {
-            console.log(res);
-            //TODO: success 데이터 넘어오면 login page로 넘기기
-        }).catch((error) => {
-            console.log(error);
-            throw new Error(error);
-        });
+        if(!userInfo.email || !userInfo.password) {
+            //setErrorMsg('필수사항을 넣어주세요.');
+            alert('필수사항을 넣어주세요.');
+            return;
+        } else {
+            axios.post('http://localhost:4000/signup', {'token':jwtToken()})
+                .then(res => {
+                    console.log(res);
+                }).catch(error => {
+                    console.log(error);
+                    throw new Error(error);
+                });
+        }
     }
 
     return (
