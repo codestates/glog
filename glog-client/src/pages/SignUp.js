@@ -41,7 +41,7 @@ export default function SignUp() {
                         placeholder='닉네임' 
                         onChange={(e) => setUserInfo({...userInfo, ['nickname']:e.target.value})}/>
                 </div>
-                <ReCaptcha/>
+                {/* <ReCaptcha/> */}
                 <div className='signup-btn' onClick={goSignUp}>가입하기</div>
             </div>
             <div className='social-login-btn'>
