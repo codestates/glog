@@ -29,7 +29,7 @@ public class RegisterController {
     @ApiOperation(value = "회원가입 API", notes = "로컬 사용자 회원가입 API")
     public String createUserinfo(@RequestBody(required = true) UserRequestDTO token, HttpServletResponse response) {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
-        Claims claims = jwtTokenUtils.getAllClaimsFromToken(token.getUsr_token());
+        Claims claims = jwtTokenUtils.getAllClaimsFromToken(token.getToken());
 
         userInfoDTO.setUserId((String) claims.get("email"));
         userInfoDTO.setUserToken((String) claims.get("password"));
