@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRequestDTO {
-    private String usr_token;
+    private String token;
 }
