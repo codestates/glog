@@ -16,7 +16,6 @@ export default function SignUp() {
         password: '',
         nickname: ''
     });
-    //const [errorMsg, setErrorMsg] = useState('');
     const handleInputValue = (key) => (val) => {
         setUserInfo({ ...userInfo, [key]: val });
     };
@@ -50,15 +49,19 @@ export default function SignUp() {
     }
 
     const goSignUp = () => {
+        const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+        const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
+
         if(!userInfo.nickname) {
             let tmpStr = userInfo.email.split('@');
             let id = tmpStr[0];
             setUserInfo({ ...userInfo, ['nickname'] : id});
         }
         //TODO: 보내기 전 유효성 검사하기 - email/password형식 확인
-        if(!userInfo.email || !userInfo.password) {
-            //setErrorMsg('필수사항을 넣어주세요.');
-            alert('필수사항을 넣어주세요.');
+        if(!userInfo.email || !userInfo.password 
+            || !emailRegex.test(userInfo.email)
+            || !pwdRegex.test(userInfo.password)) {
+            alert('필수사항을 확인해주세요.');
             return;
         } else {
             axios.post('http://localhost:4000/signup', {'token':jwtToken()})
