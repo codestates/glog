@@ -31,10 +31,27 @@ public class RegisterController {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         Claims claims = jwtTokenUtils.getAllClaimsFromToken(token);
 
-        userInfoDTO.setUserId((String) claims.get("dd"));
-        userInfoDTO.setUserToken((String) claims.get("pass"));
-        userInfoDTO.setUserName((String) claims.get("name"));
+        userInfoDTO.setUserId((String) claims.get("email"));
+        userInfoDTO.setUserToken((String) claims.get("password"));
+        userInfoDTO.setUserName((String) claims.get("nickname"));
 
         return registerService.createUserInfo(userInfoDTO);
     }
+
+    @PostMapping(value = "/gitOauth")
+    @ApiOperation(value = "소셜 회원가입 API", notes = "소셜 계정 사용자 회원등록 API")
+    public String createOauthGitUserInfo() {
+
+
+        return null;
+    }
+
+    @PostMapping(value = "/googleOauth")
+    @ApiOperation(value = "소셜 회원가입 API", notes = "소셜 계정 사용자 회원등록 API")
+    public String createOauthGoogleUserInfo() {
+
+
+        return null;
+    }
+
 }
