@@ -22,12 +22,9 @@ public class RegisterRepository {
     }
 
     public boolean duplicateCheck(String id) {
-
         UserInfoDTO userInfoDTO = entityManager.find(UserInfoDTO.class, id);
-
         return userInfoDTO == null;
     }
-
     public void createUserInfo(UserInfoDTO userInfoDTO) {
         if(duplicateCheck(userInfoDTO.getUserId())) {
             Date now = new Date();
@@ -35,10 +32,10 @@ public class RegisterRepository {
             UserInfos userInfos = new UserInfos();
 
             users.setUserId(userInfoDTO.getUserId());
-            users.setUserToken(userInfoDTO.getToken());
+            users.setUserToken(userInfoDTO.getUserToken());
 
             userInfos.setUseremail(userInfoDTO.getUserId());
-            userInfos.setUsername(userInfoDTO.getName());
+            userInfos.setUsername(userInfoDTO.getUserName());
             userInfos.setUserCreateTime(now);
 
             entityManager.persist(users);
@@ -48,6 +45,4 @@ public class RegisterRepository {
             entityManager.close();
         }
     }
-
-
 }

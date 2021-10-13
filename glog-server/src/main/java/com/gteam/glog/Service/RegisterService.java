@@ -18,12 +18,11 @@ public class RegisterService {
     }
 
     public String createUserInfo(UserInfoDTO userInfoDTO) {
-
         UserInfoDTO setUserData = new UserInfoDTO();
 
         setUserData.setUserId(userInfoDTO.getUserId());
-        setUserData.setName(userInfoDTO.getName());
-        setUserData.setToken(passwordEncoder.encode(userInfoDTO.getToken()));
+        setUserData.setUserName(userInfoDTO.getUserName());
+        setUserData.setUserToken(passwordEncoder.encode(userInfoDTO.getUserToken()));
 
         registerRepository.createUserInfo(setUserData);
 
