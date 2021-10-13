@@ -5,6 +5,8 @@ import Password from '../components/Password'
 import ReCaptcha from '../components/ReCaptcha'
 import SocialAuth from '../components/SocialAuth'
 import logo from '../img/logo.png';
+import crypto from 'crypto';
+import axios from 'axios';
 
 export default function SignUp() {
     const [userInfo, setUserInfo] = useState({
@@ -15,15 +17,54 @@ export default function SignUp() {
     const handleInputValue = (key) => (val) => {
         setUserInfo({ ...userInfo, [key]: val });
     };
-    const goSignUp = () => {
 
+    const base64url = (source) => {
+        return Buffer(JSON.stringify(origin))
+        .toString('base64')
+        .replace('=', '');
+    }
+
+    const jwtToken= () => {
+        const header = {
+            'type' : 'JWT',
+            'alg' : 'HS256'
+        };
+        const datas = {
+            'email': userInfo.email,
+            'password': userInfo.password,
+            'nickname': userInfo.nickname
+        }
+        const encodedHeader = base64url(header);
+        const encodedPayload = base64url(payload);
+        
+        const signature = crypto.createHmac('sha256', 'secret')
+                                .update(encodedHeader + '.' + encodedPayload)
+                                .digest('base64')
+                                .replace('=', '');
+        console.log('token :: ', signature);
+        return signature; 
+    }
+
+    const goSignUp = () => {
         if(!userInfo.nickname) {
             let tmpStr = userInfo.email.split('@');
             let id = tmpStr[0];
             setUserInfo({ ...userInfo, ['nickname'] : id});
         }
-        
+        //TODO: 보내기 전 유효성 검사하기 - email/password형식 확인
+        axios({
+            method: 'POST',
+            url: 'http://localhost:4000/signup',
+            data: jwtToken()
+        }).then((res) => {
+            console.log(res);
+            //TODO: success 데이터 넘어오면 login page로 넘기기
+        }).catch((error) => {
+            console.log(error);
+            throw new Error(error);
+        });
     }
+
     return (
         <div className='signup-container'>
             <div className='intro'>
