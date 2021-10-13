@@ -24,7 +24,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .cors().configurationSource(corsConfigurationSource()).and()
+                .cors().disable()
                 .csrf().disable()
                 .formLogin().disable()
                 .headers().frameOptions().disable();
