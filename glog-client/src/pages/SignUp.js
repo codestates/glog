@@ -5,25 +5,72 @@ import Password from '../components/Password'
 //import ReCaptcha from '../components/ReCaptcha'
 import SocialAuth from '../components/SocialAuth'
 import logo from '../img/logo.png';
+import crypto from 'crypto';
+import axios from 'axios';
 
 export default function SignUp() {
+    const JWT_EXPIRY_TIME = 24 * 3600 * 1000; // 만료 시간 (24시간 밀리 초로 표현)
+
     const [userInfo, setUserInfo] = useState({
         email: '',
         password: '',
         nickname: ''
     });
+    //const [errorMsg, setErrorMsg] = useState('');
     const handleInputValue = (key) => (val) => {
         setUserInfo({ ...userInfo, [key]: val });
     };
-    const goSignUp = () => {
 
+    const base64url = (source) => {
+        return Buffer(JSON.stringify(source))
+        .toString('base64')
+        .replace('=', '');
+    }
+
+    const jwtToken= () => {
+        const header = {
+            'type' : 'JWT',
+            'alg' : 'HS256'
+        };
+        const datas = {
+            'sub': 'gLogSubject',
+            'exp': JWT_EXPIRY_TIME,
+            'email': userInfo.email,
+            'password': userInfo.password,
+            'nickname': userInfo.nickname
+        }
+        const encodedHeader = base64url(header);
+        const encodedPayload = base64url(datas);
+        
+        const signature = crypto.createHmac('sha256', 'glogkey')
+                                .update(encodedHeader + '.' + encodedPayload)
+                                .digest('base64')
+                                .replace('=', '');
+        return signature; 
+    }
+
+    const goSignUp = () => {
         if(!userInfo.nickname) {
             let tmpStr = userInfo.email.split('@');
             let id = tmpStr[0];
             setUserInfo({ ...userInfo, ['nickname'] : id});
         }
-        
+        //TODO: 보내기 전 유효성 검사하기 - email/password형식 확인
+        if(!userInfo.email || !userInfo.password) {
+            //setErrorMsg('필수사항을 넣어주세요.');
+            alert('필수사항을 넣어주세요.');
+            return;
+        } else {
+            axios.post('http://localhost:4000/signup', {'token':jwtToken()})
+                .then(res => {
+                    console.log(res);
+                }).catch(error => {
+                    console.log(error);
+                    throw new Error(error);
+                });
+        }
     }
+
     return (
         <div className='signup-container'>
             <div className='intro'>

@@ -27,7 +27,6 @@ public class RegisterController {
     @PostMapping(value = "/signup")
     @ApiOperation(value = "회원가입 API", notes = "로컬 사용자 회원가입 API")
     public String createUserinfo(@RequestBody(required = true)String token, HttpServletResponse response) {
-
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         Claims claims = jwtTokenUtils.getAllClaimsFromToken(token);
 
