@@ -1,6 +1,7 @@
 package com.gteam.glog.Controller;
 
 import com.gteam.glog.Domain.UserInfoDTO;
+import com.gteam.glog.Domain.UserRequestDTO;
 import com.gteam.glog.Service.JWTTokenUtils;
 import com.gteam.glog.Service.RegisterService;
 import io.jsonwebtoken.Claims;
@@ -26,9 +27,9 @@ public class RegisterController {
 
     @PostMapping(value = "/signup")
     @ApiOperation(value = "회원가입 API", notes = "로컬 사용자 회원가입 API")
-    public String createUserinfo(@RequestBody(required = true)String token, HttpServletResponse response) {
+    public String createUserinfo(@RequestBody(required = true) UserRequestDTO token, HttpServletResponse response) {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
-        Claims claims = jwtTokenUtils.getAllClaimsFromToken(token);
+        Claims claims = jwtTokenUtils.getAllClaimsFromToken(token.getUsr_token());
 
         userInfoDTO.setUserId((String) claims.get("email"));
         userInfoDTO.setUserToken((String) claims.get("password"));
@@ -36,21 +37,4 @@ public class RegisterController {
 
         return registerService.createUserInfo(userInfoDTO);
     }
-
-    @PostMapping(value = "/gitOauth")
-    @ApiOperation(value = "소셜 회원가입 API", notes = "소셜 계정 사용자 회원등록 API")
-    public String createOauthGitUserInfo() {
-
-
-        return null;
-    }
-
-    @PostMapping(value = "/googleOauth")
-    @ApiOperation(value = "소셜 회원가입 API", notes = "소셜 계정 사용자 회원등록 API")
-    public String createOauthGoogleUserInfo() {
-
-
-        return null;
-    }
-
 }
