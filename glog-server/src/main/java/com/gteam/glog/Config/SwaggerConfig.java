@@ -20,7 +20,7 @@ public class SwaggerConfig {
                 .groupName("glog-api")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.gteam.glog.Controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.gteam.glog"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -1,9 +1,9 @@
-package com.gteam.glog.Controller;
+package com.gteam.glog.login.Controller;
 
-import com.gteam.glog.Domain.OAuthRequestDTO;
-import com.gteam.glog.Domain.UserRequestDTO;
-import com.gteam.glog.Entity.Users;
-import com.gteam.glog.Service.LoginService;
+import com.gteam.glog.member.Domain.OAuthRequestDTO;
+import com.gteam.glog.member.Domain.UserRequestDTO;
+import com.gteam.glog.member.Entity.Users;
+import com.gteam.glog.login.Service.LoginService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,6 @@
-package com.gteam.glog.Service;
+package com.gteam.glog.auth.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gteam.glog.Entity.UserInfos;
-import com.gteam.glog.Entity.Users;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

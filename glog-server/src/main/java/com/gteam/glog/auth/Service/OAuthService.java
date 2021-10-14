@@ -1,8 +1,8 @@
-package com.gteam.glog.Service;
+package com.gteam.glog.auth.Service;
 
-import com.gteam.glog.Domain.OAuthResponseDTO;
-import com.gteam.glog.Entity.OAuthCode;
-import com.gteam.glog.Repository.OAuthRepository;
+import com.gteam.glog.member.Domain.OAuthResponseDTO;
+import com.gteam.glog.auth.Entity.OAuthCode;
+import com.gteam.glog.auth.Repository.OAuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

@@ -1,6 +1,6 @@
-package com.gteam.glog.Repository;
+package com.gteam.glog.auth.Repository;
 
-import com.gteam.glog.Entity.OAuthCode;
+import com.gteam.glog.auth.Entity.OAuthCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

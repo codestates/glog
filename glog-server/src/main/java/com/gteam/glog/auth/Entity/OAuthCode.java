@@ -1,4 +1,4 @@
-package com.gteam.glog.Entity;
+package com.gteam.glog.auth.Entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

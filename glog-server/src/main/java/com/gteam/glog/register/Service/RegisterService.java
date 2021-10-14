@@ -1,7 +1,7 @@
-package com.gteam.glog.Service;
+package com.gteam.glog.register.Service;
 
-import com.gteam.glog.Domain.UserInfoDTO;
-import com.gteam.glog.Repository.RegisterRepository;
+import com.gteam.glog.member.Domain.UserInfoDTO;
+import com.gteam.glog.register.Repository.RegisterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
