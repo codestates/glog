@@ -27,8 +27,6 @@ export default function SignUp() {
     }
 
     const jwtToken= () => {
-        console.log('nickname1 ::: ', userInfo.nickname);
-        
         const header = {
             'type' : 'JWT',
             'alg' : 'HS256'
