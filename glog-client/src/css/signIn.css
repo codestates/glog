@@ -1,22 +1,14 @@
 .signin-container{
-    width: 980px;
-    min-width: 400px;
-    margin: 0 auto;
-    text-align: center;
+    
 }
 
 .signin-intro{
-    display: inline-block;
-    width: 40px;
-    height: 40px;
+    margin-top: 30px;
 }
 
 .signin-intro .intro{
-    position: relative;
     font-size: 1.5em;
-    width: 150px;
-    right: 50px;
-    height: 5px;
+    margin: 20px 0;
 }
 
 .signin {

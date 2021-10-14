@@ -6,6 +6,7 @@ import { faGithub,faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useForm } from 'react-hook-form';
 import logo from '../img/logo.png'
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 
 export default function SignIn() {
@@ -105,7 +106,7 @@ export default function SignIn() {
                 <a href="/">
                     <img src={logo} width="40" height="40" alt="logo"/>
                 </a>
-                <p className="intro"> 환영합니다!</p>
+                <p className="intro">Glog에 오신 것을 환영합니다.</p>
             </div>
             <div className="signin">
                 <div className="singin-form">
@@ -156,12 +157,12 @@ export default function SignIn() {
                             <span className="signin_text"> Google 계정으로 로그인</span>
                         </button>
                     </div>
-                    {/* <div className="github-btn">
+                    <div className="github-btn">
                         <button className="signin_github">
                         <FontAwesomeIcon icon={faGithub}/>
                             <span className="signin_text"> GitHub 계정으로 로그인</span>
                         </button>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
