@@ -1,9 +1,9 @@
-package com.gteam.glog.Controller;
+package com.gteam.glog.register.Controller;
 
-import com.gteam.glog.Domain.UserInfoDTO;
-import com.gteam.glog.Domain.UserRequestDTO;
-import com.gteam.glog.Service.JWTTokenUtils;
-import com.gteam.glog.Service.RegisterService;
+import com.gteam.glog.member.Domain.UserInfoDTO;
+import com.gteam.glog.member.Domain.UserRequestDTO;
+import com.gteam.glog.auth.Service.JWTTokenUtils;
+import com.gteam.glog.register.Service.RegisterService;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 @RestController
 public class RegisterController {
 
     private final RegisterService registerService;
-    private JWTTokenUtils jwtTokenUtils;
+    private JWTTokenUtils jwtTokenUtils = new JWTTokenUtils();
 
     @Autowired
     public RegisterController(RegisterService registerService) {

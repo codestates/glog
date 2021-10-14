@@ -1,10 +1,11 @@
-package com.gteam.glog.Service;
+package com.gteam.glog.login.Service;
 
-import com.gteam.glog.Domain.BadResponseDTO;
-import com.gteam.glog.Domain.UserInfoDTO;
-import com.gteam.glog.Domain.UserResponseDTO;
-import com.gteam.glog.Entity.Users;
-import com.gteam.glog.Repository.LoginRepository;
+import com.gteam.glog.auth.Service.JWTTokenUtils;
+import com.gteam.glog.member.Domain.BadResponseDTO;
+import com.gteam.glog.member.Domain.UserInfoDTO;
+import com.gteam.glog.member.Domain.UserResponseDTO;
+import com.gteam.glog.member.Entity.Users;
+import com.gteam.glog.login.Repository.LoginRepository;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 

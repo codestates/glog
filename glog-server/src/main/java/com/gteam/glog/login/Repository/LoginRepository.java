@@ -1,8 +1,7 @@
-package com.gteam.glog.Repository;
+package com.gteam.glog.login.Repository;
 
-import com.gteam.glog.Domain.UserInfoDTO;
-import com.gteam.glog.Entity.Users;
-import org.apache.catalina.User;
+import com.gteam.glog.member.Domain.UserInfoDTO;
+import com.gteam.glog.member.Entity.Users;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

@@ -1,6 +1,7 @@
 package com.gteam.glog.Service;
 
-import com.gteam.glog.Entity.Users;
+import com.gteam.glog.auth.Service.JWTTokenUtils;
+import com.gteam.glog.member.Entity.Users;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

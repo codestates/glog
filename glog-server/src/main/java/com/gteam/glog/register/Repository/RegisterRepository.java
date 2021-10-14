@@ -1,8 +1,8 @@
-package com.gteam.glog.Repository;
+package com.gteam.glog.register.Repository;
 
-import com.gteam.glog.Domain.UserInfoDTO;
-import com.gteam.glog.Entity.UserInfos;
-import com.gteam.glog.Entity.Users;
+import com.gteam.glog.member.Domain.UserInfoDTO;
+import com.gteam.glog.member.Entity.UserInfos;
+import com.gteam.glog.member.Entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

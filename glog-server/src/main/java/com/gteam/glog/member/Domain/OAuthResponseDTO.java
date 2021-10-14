@@ -1,4 +1,4 @@
-package com.gteam.glog.Domain;
+package com.gteam.glog.member.Domain;
 
 import lombok.Getter;
 import lombok.Setter;
