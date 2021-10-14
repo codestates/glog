@@ -28,19 +28,26 @@ public class LoginController {
         try{
             Optional<Users> users = loginService.validateUserLogin(userRequestDTO.getToken());
             return ResponseEntity.ok().body(loginService.doGenerateResponseDTO(users.get(),"Login success"));
-        }catch (NoSuchElementException e){
-            return ResponseEntity.badRequest().body(loginService.doGenerateBadResponseDTO(e.getMessage()));
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(loginService.doGenerateBadResponseDTO("Login Failed"));
         }
+    }
 
-
+    @PostMapping("/myinfo")
+    @ApiOperation(value = "유저 정보 조회", notes = "유저 정보를 요청하는 API")
+    public ResponseEntity<?> getMypage(@RequestBody()UserRequestDTO userRequestDTO){
+        try{
+            Optional<Users> users = loginService.validateUserLogin(userRequestDTO.getToken());
+            return ResponseEntity.ok().body(loginService.doGenerateResponseDTO(users.get(),"Login success"));
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(loginService.doGenerateBadResponseDTO("Login Failed"));
+        }
     }
 
     @PostMapping("/oauth")
-    @ApiOperation(value = "쇼셜 로그인 API", notes = "쇼셜 사용자 로그인 API { }")
+    @ApiOperation(value = "소셜 로그인 API", notes = "소셜 사용자 로그인 API { }")
     public ResponseEntity<?> OAuthSigin(@RequestBody() OAuthRequestDTO authorization){
         try{
-            System.out.println(authorization.getAuthorizationCode());
-
             return ResponseEntity.ok().body("");
         }catch (Exception error){
             return ResponseEntity.badRequest().body("Not found!");

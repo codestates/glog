@@ -7,6 +7,7 @@ import com.gteam.glog.member.Domain.UserResponseDTO;
 import com.gteam.glog.member.Entity.Users;
 import com.gteam.glog.login.Repository.LoginRepository;
 import io.jsonwebtoken.Claims;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -17,6 +18,7 @@ public class LoginService {
 
     private final LoginRepository loginRepository;
     private final JWTTokenUtils jwtTokenUtils;
+    PasswordEncoder passwordEncoder;
     public LoginService(LoginRepository loginRepository, JWTTokenUtils jwtTokenUtils) {
         this.loginRepository = loginRepository;
         this.jwtTokenUtils = jwtTokenUtils;
@@ -49,7 +51,7 @@ public class LoginService {
     public UserInfoDTO findUserInfoByUserId(String id){
         try{
             return loginRepository.getUserInfoByUserId(id).get();
-        }catch (NoSuchElementException e){
+        }catch (IllegalArgumentException e){
             return null;
         }
     }
@@ -62,15 +64,21 @@ public class LoginService {
      *
      * @param token -
      * @return :
+     *       >  all correct    : UserIdx, userId
+     *       >  is not correct : optional Empty()
      */
     public Optional<Users> validateUserLogin(String token){
         if(!jwtTokenUtils.validateToken(token)){
             Claims claims = jwtTokenUtils.getAllClaimsFromToken(token);
             try{
                 Optional<Users> users = loginRepository.getUsersByUserId((String)claims.get("userId"));
+
                 // Bcrypt password validate
+                if(!passwordEncoder.matches((String)claims.get("userToken"),users.get().getUserToken())){
+                    return Optional.empty();
+                }
                 return users;
-            }catch (NoSuchElementException e){
+            }catch (IllegalArgumentException e){
                 return Optional.empty();
             }
         }else{
@@ -101,7 +109,7 @@ public class LoginService {
      */
     public BadResponseDTO doGenerateBadResponseDTO(String _msg){
         return BadResponseDTO.builder()
-                .ecode(400)
+                .ecode(203)
                 .msg(_msg).build();
     }
 
