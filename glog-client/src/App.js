@@ -1,23 +1,25 @@
 import React from 'react';
 import { Switch, Route} from 'react-router-dom';
-import Header from './pages/Header';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Mypage from './pages/MyPage';
+import Main from './pages/MyPage';
 
 
 function App() {
   return (
     <div>
-      <Header/>
       <Switch>
-        <Route exact path='/signin'>
+        <Route exact path='/'>
+          <Main/>
+        </Route>
+        <Route path='/signin'>
           <SignIn/>
         </Route>
-        <Route exact path='/signup'>
+        <Route path='/signup'>
           <SignUp/>
         </Route>
-        <Route exact path="/mypage">
+        <Route path="/mypage">
           <Mypage/>
         </Route>
       </Switch>
