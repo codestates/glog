@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -58,10 +59,14 @@ public class JWTTokenUtils {
      * 2. HS512알고리즘과 secret key를 가지고 JWT를 서명한다.
      *
      * @param claims -
-     * @return
+     * @return generater token string
      */
     private String doGenerateToken(Map<String, Object> claims) {
         return Jwts.builder()
+                .setHeader(new HashMap<>(){{
+                    put("typ","JWT");
+                    put("alg","HS256");
+                }})
                 .setClaims(claims)
                 .setSubject(SUBJECT_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))

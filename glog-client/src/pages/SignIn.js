@@ -4,84 +4,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import { faGithub,faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useForm } from 'react-hook-form';
+import crypto from 'crypto';
 import logo from '../img/logo.png'
 import axios from 'axios';
 
 
 export default function SignIn() {
     const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
-
-    const [userInfo,setUserInfo] = useState({
-        email: '',
-        password: ''
-    })
-
-    const handleInputValue = (key) => (val) => {
-        setUserInfo ({...userInfo,[key]:val});
-    }
-
-    const base64url = (source) => {
-        return Buffer(JSON.stringify(source))
-        .toString('base64')
-        .replace('=', '');
-    }
-
-    const jwtToken= () => {
-        const header = {
-            'type' : 'JWT',
-            'alg' : 'HS256'
-        };
-        const datas = {
-            'sub': 'gLogSubject',
-            'exp': JWT_EXPIRY_TIME,
-            'email': userInfo.email,
-            'password': userInfo.password,
-        }
-        const encodedHeader = base64url(header);
-        const encodedPayload = base64url(datas);
-        
-        const signature = crypto.createHmac('sha256', 'glogkey')
-                                .update(encodedHeader + '.' + encodedPayload)
-                                .digest('base64')
-                                .replace('=', '');
-        return signature; 
-    }
-
-    const curSignIn = () => {
-        if(!userInfo.email || !userInfo.password){
-            return null;
-        }
-        else{
-            axios.post('http://localhost:4000/signin',{'token':jwtToken()})
-            .then(res=>{
-                console.log(res);
-            }).catch(error=>{
-                console.log(error);
-                throw new Error(error);
-            });
-        }
-    }
-
     const [inputId,setInputId]=useState('');
     const [inputPw,setInputPw]=useState('');
 
+
+
+
     const handleInputId = (e) => {
-        setInputId(e.target.value)
+        console.log("pass input",e.email)
+        setInputId(e.email);
     }
 
     const handleInputPw = (e) => {
-        setInputPw(e.target.value)
+        console.log("pass input",e.password)
+        setInputPw(e.password);
     }
 
     const onClickLogin = () => {
         console.log('click login')
     };
 
-    useEffect(()=>{
-        axios.post('http://localhost:4000/signin')
-        .then(res=>console.log(res))
-        .catch()
-    },[])
+    const base64url = (source) => {
+        return Buffer(JSON.stringify(source))
+        .toString('base64')
+        .replace('=', '');
+    }
 
     const {register, handleSubmit,formState:{errors}} = useForm();
 
@@ -92,11 +46,62 @@ export default function SignIn() {
     }
 
     const onSubmit = (data) => {
+        handleInputId(data);
+        handleInputPw(data);
+        setTimeout(()=>curSignIn(),1000);
+    
         console.log(data)
     };
     const onError = (error) => {
         console.log(error);
     };
+
+    const jwtToken= () => {
+        const header = {
+            'type' : 'JWT',
+            'alg' : 'HS256'
+        };
+        const datas = {
+            'sub': 'gLogSubject',
+            'exp': JWT_EXPIRY_TIME,
+            'email': inputId,
+            'password': inputPw
+        }
+        const encodedHeader = base64url(header);
+        const encodedPayload = base64url(datas);
+        
+        const signature = crypto.createHmac('sha256', 'glogkey')
+                                .update(encodedHeader + '.' + encodedPayload)
+                                .digest('base64')
+                                .replace('=', '');
+
+        return encodedHeader + '.' + encodedPayload + '.' + signature; 
+    }
+
+    const curSignIn = () => {
+        console.log("로그인 눌림")
+        if(inputId === '' && inputPw === ''){
+            console.log("공백")
+            return null;
+        }
+        else{
+            let data = {'token':jwtToken()};
+            console.log("axios :", data)
+            axios.post('http://localhost:4000/signin',data)
+            .then(res=>{
+                console.log(res);
+            }).catch(error=>{
+                console.log(error);
+                throw new Error(error);
+            });
+        }
+    }
+
+    useEffect(()=>{
+        // axios.post('http://localhost:4000/signin')
+        // .then(res=>console.log(res))
+        // .catch()
+    },[])
 
 
     return (
@@ -126,7 +131,10 @@ export default function SignIn() {
                         </div>
                         <div className="password">
                             <label className="password_label">비밀번호 : </label>
-                            <input type="password" type={show ? "text" : "password"} name="input_pw" placeholder="Password"/>
+                            <input type="password" type={show ? "text" : "password"} name="input_pw" placeholder="Password"
+                            {...register("password", {
+                                required: true   })
+                                }/>
                             {
                                 show?(
                                     <FontAwesomeIcon
@@ -151,7 +159,7 @@ export default function SignIn() {
                 <div className="social-singin-btn">
                     <p>또는</p>
                     <div className="google-btn">
-                        <button className="signin_google">
+                        <button className="signin_google" >
                             <FontAwesomeIcon icon={faGoogle}/>
                             <span className="signin_text"> Google 계정으로 로그인</span>
                         </button>
