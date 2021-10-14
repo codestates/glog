@@ -6,15 +6,16 @@ import logo from '../img/logo.png';
 export default function Header() {
     return (
         <div className="header">
-            <a href='/'>
-                <img src={logo} width='40' height='40' alt='logo'/>
+            <a className="logo" href='/'>
+                <img src={logo} width='50' height='50' alt='logo'/>
+                <span>GLOG</span>
             </a>
-            <ul>
+            <ul className="btn">
                 <li>
-                    <Link to="/signin">Sign In</Link>
+                    <Link to="/signin">SignIn</Link>
                 </li>
                 <li>
-                    <Link to="/signup">Sign Up</Link>
+                    <Link to="/signup">SignUp</Link>
                 </li>
                 <li>
                     <Link to="/mypage">Mypage</Link>

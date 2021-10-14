@@ -1,0 +1,43 @@
+.main {
+    width: 930px;
+}
+.post {
+    float: right;
+    width: 30%;
+    padding: 5px;
+    margin-left: 10px;
+    text-align: left;
+    box-sizing: content-box;
+    border: 1px solid #ccc;
+    color : rgb(59, 59, 59);
+}
+.post img {
+    width: 280px;
+}
+.post h4 {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.post p {
+    height: 70px;
+}
+.post .sub-info {
+    margin-bottom: 10px;
+}
+.main .user-info {
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+    text-align:left;
+}
+.main .user-info a {
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.main .user-info a img {
+    width: 20px;
+    height: 20px;
+}
