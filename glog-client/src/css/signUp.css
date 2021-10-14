@@ -10,9 +10,11 @@
     display: inline-block;
     width: 40px;
     height: 40px;
+    margin-top: 30px;
 }
 .intro .salutation {
     font-size: 1.5em;
+    margin: 20px 0;
 }
 /* user info */
 .user-info {
@@ -83,6 +85,7 @@
     text-align: center;
 }
 .social-login-btn p {
+    margin: 10px 0;
     color: #797979;
 }
 .social-login-btn div{
