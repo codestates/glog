@@ -7,6 +7,7 @@ import SocialAuth from '../components/SocialAuth'
 import logo from '../img/logo.png';
 import crypto from 'crypto';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default function SignUp() {
     const JWT_EXPIRY_TIME = 24 * 3600 * 1000; // 만료 시간 (24시간 밀리 초로 표현)
@@ -64,7 +65,7 @@ export default function SignUp() {
             || !pwdRegex.test(userInfo.password)) {
             alert('필수사항을 확인해주세요.');
             return;
-        } else {
+        }else {
             axios.post('http://localhost:4000/signup', {'token':jwtToken()})
                 .then(res => {
                     console.log(res);

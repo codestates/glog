@@ -1,8 +1,4 @@
 .signup-container {
-    width : 980px;
-    min-width: 400px;
-    margin: 0 auto;
-    text-align: center;
     
 }
 /* intro */
@@ -72,7 +68,7 @@
 }
 .user-info .password .show {
     position: absolute;
-    top: 37px;
+    top: 30%;
     right: 10px;
     color: #179ea9;
     cursor: pointer;
